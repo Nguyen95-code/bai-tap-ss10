@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            text-align: center;
+        }
+        th{
+            text-align: center;
+            padding: 8px;
+            font-weight: bold;
+        }
+        td {
+            padding: 8px;
+            text-align: center;
+        }
+        tr:nth-child(even){background-color: #f2f2f2}
+        button{
+            color: white;
+            width: 60px;
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+<h2>Add new product</h2>
+<br>
+<input id="add" value="" >
+<button type="button" onclick="them(document.getElementById('add').value)"> Add </button>
+<br>
+<p id="show"></p>
+<br>
+<script>
+    let ds_san_pham=['but', 'may tinh', 'chuot', 'ban chai', 'quan', 'ao'];
+    function hien_thi() {
+        let hienThi = "<table>";
+        hienThi += "<th><h2>Products Name</h2></th>";
+        hienThi += "<tr><td>Numerical Order</td>    <td>Products Name</td>   <td>Edit Products</td>   <td>Delete Products</td></tr>";
+        for (let i=0;i<ds_san_pham.length;i++){
+            let stt=i+1;
+            hienThi+='<tr><td>'+stt+'</td>'+'<td>' + ds_san_pham[i]+'</td>'+
+                '<td><button type="button" onclick="sua('+ i +')"> Edit </button></td>' +
+                '<td><button type="button" onclick="xoa('+ i +')"> Delete </button></td></tr>';
+        }
+        hienThi+='</table>';
+        document.getElementById("show").innerHTML = hienThi;
+    }
+    function them(x) {
+        ds_san_pham.push(x);
+        document.getElementById('show').innerHTML='<p></p>';
+        hien_thi();
+        alert("Đã thêm sản phẩm "+x);
+    }
+    function sua(x) {
+        let y=prompt("Nhap ten muon sua: ");
+        alert("San pham "+ds_san_pham[x]+ " da doi ten thanh "+y);
+        ds_san_pham[x]=y;
+        document.getElementById('show').innerHTML='<p></p>';
+        hien_thi();
+    }
+    function xoa(x) {
+        alert('Da xoa san pham '+ds_san_pham[x]);
+        ds_san_pham.splice(x,1);
+        document.getElementById('show').innerHTML='<p></p>';
+        hien_thi();
+    }
+    hien_thi();
+</script>
+</body>
+</html>

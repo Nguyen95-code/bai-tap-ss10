@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function timkiemTuyentinh(number) {
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] === number) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    function timkiemNhiphan(firstIndex, lastIndex, number) {
+        number = parseInt(number);
+        let midIndex = Math.floor((firstIndex + lastIndex) / 2);
+        if (arr[midIndex] > number) {
+            return timkiemNhiphan(firstIndex, midIndex - 1, number);
+        }
+        if (arr[midIndex] < number) {
+            return timkiemNhiphan(midIndex + 1, lastIndex, number);
+        }
+        if (arr[midIndex] === number) {
+            return midIndex;
+        }
+        return -1;
+    }
+
+    let arr = [1,25,50,75,80,82,95,100];
+    arr.sort(function (a, b) {
+        return a - b;
+    });
+    document.write(arr);
+    document.write("<br>");
+    let firstMilliseconds1 = new Date().getMilliseconds();
+    let resultTuyentinh = timkiemTuyentinh(82);
+    document.write(resultTuyentinh + " ");
+
+
+    let lastMilliseconds1 = new Date().getMilliseconds();
+    document.write(lastMilliseconds1 - firstMilliseconds1);
+    document.write("<br>");
+
+
+    let firstMilliseconds2 = new Date().getMilliseconds();
+    let resultNhiphan = timkiemNhiphan(0, arr.length - 1, 82);
+    document.write(resultNhiphan + " ");
+
+
+    let lastMilliseconds2 = new Date().getMilliseconds();
+    document.write(lastMilliseconds2 - firstMilliseconds2);
+
+</script>
+</body>
+</html>
